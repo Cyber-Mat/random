@@ -1,0 +1,1 @@
+This repo contains random bits of codes I encountered form tutorials across the web. Just started learning web development, so codes will be html,css or js. This is to help me practice every little bit, track my progress and help me code daily.
