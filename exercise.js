@@ -38,10 +38,6 @@ bola.tribe)
 tolu.tribe)
 jide.tribe)*/
 
-
-
-
-
 /* Object.create */
 
 /*let biodata = {
@@ -69,14 +65,10 @@ let tolu = Object.create(biodata, {
 
 tolu);*/
 
-
-
-
-
 /**************************************************
  FUNCTIONS
 ***************************************************/
-//////////////////////////// 
+////////////////////////////
 // Call back functions
 
 /*let smiths = [1966, 1971, 1996, 1998, 2002];
@@ -119,11 +111,11 @@ function getAge(arr, fxn) {
 }
 
 let ages = getAge(smiths, calcAge);
-ages);
+ages();
 let aveAges = getAge(smiths, getAverage);
 aveAges);
 let fullAge = getAge(johnsons, isFullAge);
-fullAge);*/
+fullAge();*/
 
 ////////////////////////////////////
 // Functions returning functions
@@ -146,12 +138,6 @@ country('Tunde', 'Ekiti');
 getNationality('USA')('Skyler', 'New Jersey');
 getNationality('Ghana')('Gyan', 'Accra');*/
 
-
-
-
-
-
-
 /////////////////////////////////////////////////
 // Immediately Invoked Function Expression(IIFE)
 /*(
@@ -160,17 +146,10 @@ getNationality('Ghana')('Gyan', 'Accra');*/
     }
 )(45);*/
 
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////
 // Closures
 
-function retirement(retirementAge) {
+/*function retirement(retirementAge) {
     var a = ' years left until retirement.';
     return function (yearOfBirth) {
         var age = 2016 - yearOfBirth;
@@ -200,4 +179,139 @@ function interviewQuestion(job) {
     };
 }
 interviewQuestion('teacher')('Mark');
-interviewQuestion('pilot')('Bisola');
+interviewQuestion('pilot')('Bisola');*/
+
+////////////////////////////////////////////////////
+// Call method
+
+/*let obinna = new Object();
+obinna.name = 'Obinna';
+obinna.job = 'developer';
+obinna.age = 24;
+obinna.presentation = function (style, time) {
+    if (style === 'formal') {
+        console.log(`Good ${time} ladies and gentlemen. I am ${this.name}, a ${this.age} year old ${this.job}.`);
+    } else if (style === 'friendly') {
+        console.log('How far guy? I\'m ' + this.name + ', a ' + this.age + ' year old ' + this.job + '. How\'s your ' + time + ' going?');
+    } else {
+        console.log('Be right back ;)');
+    };
+};
+
+
+let eeman = {
+    name: 'Eeman',
+    job: 'engineer',
+    age: 35
+}
+
+obinna.presentation('friendly', 'afternoon');
+obinna.presentation.call(eeman, 'formal', 'morning');
+
+///////////////////////////////////////////////////
+// Apply method
+obinna.presentation.apply(eeman, ['friendly', 'evening']);
+
+///////////////////////////////////////////////////
+// Bind method
+let intro = obinna.presentation.bind(obinna, 'formal', 'morning');
+console.log(intro());
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2016 - el;
+}
+
+function isFullAge(limit, el) {
+    return el >= limit;
+}
+
+let aages = arrayCalc(years, calculateAge);
+console.log(aages);
+let ages = arrayCalc(aages, isFullAge.bind(this, 20));
+console.log(ages);*/
+
+//////////////////////////////////////////////////
+// CODING CHALLENGE
+
+(function () {
+  let reading, principalBMC, govOyo, arithmetic, developer;
+  let score = 0;
+
+  function CreateQuestion(question, answers, correctAnswer) {
+    this.question = question;
+    this.answers = answers;
+    this.correctAnswer = correctAnswer;
+  }
+
+  CreateQuestion.prototype.Question = function () {
+    console.log(this.question);
+    for (let i = 0; i < this.answers.length; i++) {
+      const ans = this.answers[i];
+      console.log(ans);
+    }
+  };
+
+  CreateQuestion.prototype.checkAnswer = function (ans) {
+    if (ans === this.correctAnswer) {
+      console.log('----------------------------------------------------');
+      console.log('Awesome!');
+      console.log(`Score: ${++score}`);
+      console.log('----------------------------------------------------');
+    } else {
+      console.log('----------------------------------------------------');
+      console.log('Wrong answer!');
+      console.log(`Score: ${score}`);
+      console.log('----------------------------------------------------');
+    }
+  };
+
+  reading = new CreateQuestion('Is reading good?', ['0: Yes', '1: No'], '0');
+  principalBMC = new CreateQuestion(
+    'Who is the principal of BMCSS?',
+    ['0: Mr. Adebayo', '1: Mrs. Ezekiel', '2: Mr. Ewetola'],
+    '1'
+  );
+  govOyo = new CreateQuestion(
+    'Who is the gov of Oyo State?',
+    ['0: Makinde', '1: Ajimobi', '2: Akala'],
+    '0'
+  );
+  arithmetic = new CreateQuestion(
+    'What is the sum of 3 and 5?',
+    ['0: Eight(8)', '1: Seven(7)', '2: Six(6)', '3: Five(5)'],
+    '0'
+  );
+  developer = new CreateQuestion(
+    'Who will become the best developer in the world?',
+    ['0: Jack', '1: Kylie', '2: Olamide', '3: Favour'],
+    '2'
+  );
+
+  let questionArray = [reading, principalBMC, govOyo, arithmetic, developer];
+
+  function getQuestion() {
+    let n = Math.floor(Math.random() * questionArray.length);
+    questionArray[n].Question();
+
+    let userAnswer = prompt('Please choose an option.');
+    questionArray[n].checkAnswer(userAnswer);
+
+    if (userAnswer === 'exit') {
+      console.log(`Total score: ${score}`);
+      return;
+    } else {
+      getQuestion();
+    }
+  }
+  getQuestion();
+})();
