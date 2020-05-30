@@ -243,7 +243,7 @@ console.log(ages);*/
 //////////////////////////////////////////////////
 // CODING CHALLENGE
 
-(function () {
+/*(function () {
   let reading, principalBMC, govOyo, arithmetic, developer;
   let score = 0;
 
@@ -314,4 +314,4 @@ console.log(ages);*/
     }
   }
   getQuestion();
-})();
+})();*/
