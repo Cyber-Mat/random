@@ -413,7 +413,7 @@ isFullAge(21, ...ages); //Or we could just pass the arguments individually
 
 ///////////////////////////////////////////////////////
 //DEFAULT PARAMETERS
-
+/*
 const FalanaPerson = function (firstName, yearOfBirth, lastName = 'Falana', nationality = 'nigerian') {
   this.firstName = firstName;
   this.yearOfBirth = yearOfBirth;
@@ -425,3 +425,61 @@ let bolu = new FalanaPerson('Bolu', 2000);
 console.log(bolu);
 let bukola = new FalanaPerson('Bukola', '1992', 'Ray', 'american');
 console.log(bukola);
+*/
+
+////////////////////////////////////////////
+//MAPS
+/*
+const question = new Map();
+question.set('question', 'What is the official name of the latest major Javascript version?');
+question.set(1, 'ES5');
+question.set(2, 'ES6');
+question.set(3, 'ES2015');
+question.set(4, 'ES7');
+question.set('correct', 3);
+question.set(true, 'You are correct!');
+question.set(false, 'Wrong, please try again!');
+
+console.log(question.get('question'));
+//console.log(question.size);
+
+//if (question.has(4)) {  question.delete(4);}
+//question.clear();
+
+// question.forEach((value, key) => {
+//   console.log(`This is ${key} set to ${value}`);
+// });
+
+for (let [key, value] of question.entries()) {
+  if (typeof key === 'number') {
+    console.log(key + ': ' + value);
+  }
+}
+
+let ans = parseInt(prompt('Enter choice'));
+console.log(question.get(ans === question.get('correct')));
+*/
+
+////////////////////////////////////////////////
+//CLASSES
+
+class Person {
+  constructor(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+  }
+
+  calculateAge() {
+    let age = new Date().getFullYear() - this.yearOfBirth;
+    //console.log(age);
+    return age;
+  }
+
+  static greeting() {
+    //console.log('Hello World!');
+    return 'Hello World!';
+  }
+}
+
+const john = new Person('John', 1996, 'developer');
