@@ -847,36 +847,80 @@
 //  }, 1500);
 
 //PROMISES
-const getID = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve([234, 567, 432, 809]);
-  }, 1500);
-});
+// const getID = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve([234, 567, 432, 809]);
+//   }, 1500);
+// });
 
-const getRecipe = (recID) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(
-      (ID) => {
-        const recipe = { title: 'Amala ati gbegiri', author: 'Olamide', year: 2008 };
-        resolve(`${ID}: ${recipe.title}`);
-        //reject('Error');
-      }, 1500, recID);
-  });
-};
+// const getRecipe = (recID) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(
+//       (ID) => {
+//         const recipe = { title: 'Amala ati gbegiri', author: 'Olamide', year: 2008 };
+//         resolve(`${ID}: ${recipe.title}`);
+//         //reject('Error');
+//       },
+//       1500,
+//       recID
+//     );
+//   });
+// };
 
-const getRelated = (pub) => {
-  return new Promise((resolve, reject) => {
-    const recipe = { title: 'Iyan ati efo riro', publisher: 'Ola' };
-    resolve(`${pub}: ${recipe.title}`);
-  });
-};
+// const getRelated = (pub) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(
+//       (publisher) => {
+//         const recipe = { title: 'Iyan ati efo riro', publisher: 'Ola' };
+//         resolve(`${pub}: ${recipe.title}`);
+//       },
+//       1500,
+//       pub
+//     );
+//   });
+// };
 
-getID
-  .then((ID) => {
-    console.log(ID);
-    return getRecipe(ID[2]);
-  })
-  .then((recipe) => console.log(recipe))
-  .catch((ID) => {
-    console.log(ID);
-  });
+// getID
+//   .then((ID) => {
+//     console.log(ID);
+//     return getRecipe(ID[2]);
+//   })
+//   .then((recipe) => {
+//     console.log(recipe);
+//     return getRelated('Olamide');
+//   })
+//   .then((recipe2) => console.log(recipe2))
+//   .catch((ID) => {
+//     console.log(ID);
+//   });
+
+//ASYNC/AWAIT
+
+// async function getRecipeAw() {
+//   const IDs = await getID;
+//   console.log(IDs);
+//   const recipe = await getRecipe(IDs[1]);
+//   console.log(recipe);
+//   const related = await getRelated('Olams');
+//   console.log(related);
+
+//   return recipe;
+// }
+
+// //getRecipeAw();
+// getRecipeAw().then((idr) => console.log(idr));
+
+//AJAX(Asynchronous JS XML)
+function getWeather(woeid) {
+  fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
+    .then((result) => {
+      return result.json();
+    })
+    .then((data) => {
+      const today = data.consolidated_weather[0];
+      console.log(`The temperature in ${data.title} ${today} is between ${today.min_temp}C and ${today.max_temp}C`);
+    })
+    .catch((data) => console.log('Error'));
+}
+
+getWeather(1393672);
