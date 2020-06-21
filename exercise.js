@@ -959,3 +959,12 @@ function printerErrors(s) {
 function findNeedle(haystack) {
   return `found the needle at position ${haystack.indexOf('needle')}`;
 }
+
+function accum(s) {
+  let sArr = s
+    .toLowerCase()
+    .split('')
+    .map((el, i) => el.repeat(i + 1));
+
+  return sArr.map((el) => el.slice(0, 1).toUpperCase() + el.slice(1)).join('-');
+}
