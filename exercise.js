@@ -911,16 +911,51 @@
 // getRecipeAw().then((idr) => console.log(idr));
 
 //AJAX(Asynchronous JS XML)
-function getWeather(woeid) {
-  fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
-    .then((result) => {
-      return result.json();
-    })
-    .then((data) => {
-      const today = data.consolidated_weather[0];
-      console.log(`The temperature in ${data.title} ${today} is between ${today.min_temp}C and ${today.max_temp}C`);
-    })
-    .catch((data) => console.log('Error'));
+
+// function getWeather(woeid) {
+//   fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`)
+//     .then((result) => {
+//       return result.json();
+//     })
+//     .then((data) => {
+//       const today = data.consolidated_weather[0];
+//       console.log(`The temperature in ${data.title} is between ${today.min_temp}C and ${today.max_temp}C`);
+//     })
+//     .catch((data) => console.log('Error'));
+// }
+
+// getWeather(1393672);
+
+// AJAX ASYNC/AWAIT
+
+// async function getWeatherAw(woeid) {
+//   try {
+//     const result = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`);
+//     const data = await result.json();
+//     const today = data.consolidated_weather[0];
+//     console.log(`The temperature in ${data.title} is between ${today.min_temp}C and ${today.max_temp}C`);
+//   } catch (error) {
+//     alert(error);
+//   }
+// }
+
+// getWeatherAw(1393672);
+
+//CODEWARS
+
+function printerError(s) {
+  let alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'];
+
+  let newS = s.split('').map((s) => (alpha.includes(s) ? 0 : 1));
+
+  return `${newS.reduce((x, y) => x + y, 0)}/${s.length}`;
 }
 
-getWeather(1393672);
+function printerErrors(s) {
+  let alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm'];
+  return `${s.split('').filter((el) => !alpha.includes(el)).length}/${s.length}`;
+}
+
+function findNeedle(haystack) {
+  return `found the needle at position ${haystack.indexOf('needle')}`;
+}
