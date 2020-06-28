@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    background-color: #fff;
+    font-size: 1.6rem;
+}
+
+.clear-fix::after {
+    display: table;
+    content: '';
+    clear: both;
+}
+
+.row {
+    display: float;
+}
+
+.row div:not(:last-child) {
+    margin-right: 5%;
+}
+
+.col-1-of-2 {
+    float: left;
+    background-color: orangered;
+    width: 45%;
+}
+
+.col-2-of-2 {
+    float: left;
+    background-color: orangered;
+    width: 45%;
+}
